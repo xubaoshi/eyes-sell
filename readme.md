@@ -100,25 +100,28 @@ eslint（插件）
   --components
     --business
         --share
-          --index.wpy  //推广标签页首页
+          --index.wpy           //推广标签页首页
         --home
-          --index.wpy  //爱眼康标签页首页
+          --index.wpy           //爱眼康标签页首页
         --user
-          --index.wpy  //个人中心标签页首页
+          --index.wpy           //个人中心标签页首页
   // 业务页面
   --pages
       --login
-        forget.wpy      //找回密码
-        index.wpy       //登录
+        forget.wpy              //找回密码
+        index.wpy               //登录
       --user
-        --info.wpy      //个人信息
-        --income.wpy    //收入明细
+        --info.wpy              //个人信息
+        --income.wpy            //收入明细
       --share
-          --index.wpy   //推荐给朋友
-          --myUser.wpy  //我发展的用户
-          --preview.wpy //我的推荐图片
-      --index.wpy       //逻辑判断页
-      --home.wpy        //首页
+          --index.wpy           //推荐给朋友
+          --myUser.wpy          //我发展的用户
+          --myUserIncome.wpy    //我发展的用户收入
+          --myDoctor.wpy        //我发展的医生
+          --myDoctorIncome.wpy  //我发展的医生收入
+          --preview.wpy         //我的推荐图片
+      --index.wpy               //逻辑判断页
+      --home.wpy                //首页
 ```
 
 ## Mock 数据
