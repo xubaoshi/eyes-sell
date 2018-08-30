@@ -1,0 +1,18 @@
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '找回密码'
+    }
+  }
+</script>
+
+<template>
+  <view>
+   找回密码
+  </view>
+</template>
+
+<style lang="less" scoped>
+
+</style>

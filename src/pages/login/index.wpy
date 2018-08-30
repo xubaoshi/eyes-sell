@@ -1,0 +1,18 @@
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '登录'
+    }
+  }
+</script>
+
+<template>
+  <view>
+   登录
+  </view>
+</template>
+
+<style lang="less" scoped>
+
+</style>
