@@ -8,11 +8,25 @@
 </script>
 
 <template>
-  <view>
-    this is my user income page
-  </view>
+  <scroll-view @scrolltolower="bindDownLoad" scroll-y style="height:{{scrollHeight}}px;">
+    <!-- S 收入明细 -->
+    <view class='user-lst user-dev-lst'>
+      <!--<repeat for='{{list}}'>-->
+      <!-- 循环user-item -->
+      <view class='user-item'>
+        <image class='avatar' mode='aspectFill' src='{{item.avatar}}'></image>
+        <view class='user-hd'>
+          {{item.name}}
+          <text class='income'>$200.00</text>
+        </view>
+      </view>
+      <!-- / user-item -->
+      <!--</repeat>-->
+    </view>
+    <!-- E 收入明细 -->
+  </scroll-view>
 </template>
 
 <style lang="less" scoped>
-
+  @import url('../../../styles/components/c_user.less');
 </style>

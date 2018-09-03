@@ -27,18 +27,18 @@
     }
     config = {
       pages: [
-        'pages/user/income',
+        'pages/user/share/myUserIncome',
         'pages/home',
         'pages/index',
         // ================================
         // user
         'pages/user/info',
-        'pages/user/share/myUser',
+        'pages/user/income',
         // 'pages/user/share/index',
+        'pages/user/share/myUser',
         'pages/user/share/preview',
         'pages/user/share/myDoctor',
         'pages/user/share/myDoctorIncome',
-        'pages/user/share/myUserIncome',
         // ================================
         // login
         'pages/login/index',
