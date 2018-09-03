@@ -21,6 +21,12 @@ export default class http {
       if (err.errMsg) {
         tips.toast(err.errMsg, null, 'none')
       }
+      // 如果 code 为 2，页面跳转至登录页
+      if (err.serverCode === 2) {
+        wepy.reLaunch({
+          url: '/pages/login/index'
+        })
+      }
       throw err
     }
   }
@@ -46,9 +52,9 @@ export default class http {
     error.statusCode = res.statusCode
     const wxData = res.data
     const serverData = wxData.data
-    if (serverData) {
+    if (wxData) {
       error.serverCode = wxData.code
-      error.message = serverData.message
+      error.errMsg = wxData.errMsg
       error.serverData = serverData
     }
     return error
