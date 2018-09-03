@@ -8,11 +8,29 @@
 </script>
 
 <template>
-  <view>
-    this is my doctor income page
+   <!-- S 医生列表 -->
+  <view class='doc-lst'>
+    <!-- 循环 doc-item即可  -->
+    <repeat for='{{list}}'> 
+    <view class='doc-item' @tap='handleGoDetail({{item}})'>
+      <image class='doc-avatar' mode='aspectFill' src='{{item.avatar}}'></image>
+      <view class='doc-profile'>
+        <view class='doc-name'>{{item.name}}</view>
+        <view class='doc-advantage'>
+          <text class='txt'>{{item.title}} {{item.hospitalName}}</text>
+          <text class='txt'>擅长：{{item.expert}}</text>
+        </view>
+        <view class='doc-cost'>
+          <text class='txt price'>{{item.price}}元</text>
+        </view>
+      </view>
+    </view>
+    <!-- </repeat> -->
+    <zanLoadmore :loading.sync="isLoading"> </zanLoadmore>
   </view>
+  <!-- E 医生列表 -->
 </template>
 
 <style lang="less" scoped>
-
+  @import url('../../../styles/components/c_doc_lst.less');
 </style>

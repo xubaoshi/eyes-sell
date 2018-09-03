@@ -27,7 +27,6 @@
     }
     config = {
       pages: [
-        'pages/user/share/myUserIncome',
         'pages/home',
         'pages/index',
         // ================================
@@ -36,6 +35,7 @@
         'pages/user/income',
         // 'pages/user/share/index',
         'pages/user/share/myUser',
+        'pages/user/share/myUserIncome',
         'pages/user/share/preview',
         'pages/user/share/myDoctor',
         'pages/user/share/myDoctorIncome',
