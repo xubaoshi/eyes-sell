@@ -19,7 +19,7 @@
     config = {
       navigationBarTitleText: '个人信息'
     }
-    onShow(){
+    onShow() {
       userService.info()
     }
     methods = {
@@ -74,7 +74,7 @@
         header: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(async (res) => {
+      }).then(async(res) => {
         const result = JSON.parse(res)
         if (result.code != 0) {
           tips.toast('上传失败', null, 'none')
@@ -98,28 +98,41 @@
 
 <template>
   <view>
+    <!-- S 个人信息 -->
+    <view class='user-panel'>
+        <image class='avatar' mode='aspectFill' src='{{user.avatar}}'></image>
+        <view class='user-name'>吴彦祖</view>
+        <view class='user-intro'>
+          <text class='txt'>江苏南京</text>
+          <text class='txt'>推广码：21876</text>
+        </view>
+        
+    </view>
+    <!-- E 个人信息 -->
+
+
     <!-- S 表单列表 -->
     <view class='ui-form'>
-      <view class='field field-xl' @tap='handleChangeAvatar'>
-        <text class='field-tit'>头像</text>
+      <view class='field' @tap='handleGoIncome'>
+        <view class='field-icon blue'>
+          <text class='iconfont  icon-shouru '></text>
+        </view>
+        <text class='field-tit'>收入明细</text>
         <view class='field-tail'>
-          <image class='avatar' mode='aspectFill' src='{{user.avatar}}'></image>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
       <!-- /field -->
-      <view class='field' @tap='handleGoName'>
-        <text class='field-tit'>昵称</text>
-        <view class='field-tail'>
-          <text class='txt'>{{user.name}}</text>
-          <text class='iconfont  icon-zhankai arrow'></text>
+    </view>
+    <!-- E 表单 -->
+    <!-- S 表单列表 -->
+    <view class='ui-form'>
+      <view class='field' @tap='handleGoIncome'>
+        <view class='field-icon green'>
+          <text class='iconfont  icon-Group-'></text>
         </view>
-      </view>
-      <!-- /field -->
-      <view class='field'>
-        <text class='field-tit'>手机号码</text>
+        <text class='field-tit'>密码修改</text>
         <view class='field-tail'>
-          <text class='txt'>{{user.phone}}</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
@@ -132,4 +145,5 @@
 
 <style lang="less" scoped>
   @import url('../../styles/ui/ui_form.less');
+  @import url('../../styles/components/c_user.less');
 </style>
