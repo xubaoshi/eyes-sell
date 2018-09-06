@@ -7,8 +7,7 @@
   import lang from '@/utils/lang'
   import store from '@/store/utils'
   @connect({
-    home: store.get('home'),
-    evaluate: store.get('evaluate')
+    home: store.get('home')
   })
   export default class Home extends wepy.component {
     components = {
@@ -23,17 +22,6 @@
           return this.home.bannerList
         }
       },
-      evaluateList() {
-        if (lang.isEmpty(this.evaluate) || lang.isEmpty(this.evaluate.list)) {
-          return []
-        } else {
-          if (this.evaluate.list.length > 10) {
-            return this.evaluate.list.slice(0, 10)
-          } else {
-            return this.evaluate.list
-          }
-        }
-      },
       title() {
         if (lang.isEmpty(this.evaluate) || lang.isEmpty(this.evaluate.list)) {
           return '患者评价'
@@ -43,21 +31,6 @@
       }
     }
     methods = {
-      handleGoCon() {
-        wepy.navigateTo({
-          url: '/pages/consult/add'
-        })
-      },
-      handleGoDoc() {
-        wepy.navigateTo({
-          url: '/pages/doctor/index'
-        })
-      },
-      handleGoAllEval() {
-        wepy.navigateTo({
-          url: '/pages/doctor/evalateList?type=all'
-        })
-      }
     }
   }
 </script>
@@ -158,49 +131,47 @@
 
 <style lang='less' scoped>
   @import url('../../../styles/ui/ui_form.less');
-
-  .data-wrap{
+  .data-wrap {
     display: flex;
     justify-content: space-around;
     padding: 45rpx 0;
     margin: 30rpx 0;
-
     background-color: #fff;
     border-top: 1rpx solid #e5e5e5;
     border-bottom: 1rpx solid #e5e5e5;
-    .data-item{
-        width: 33%;
-        border-right: 1rpx solid #e5e5e5;
+    .data-item {
+      width: 33%;
+      border-right: 1rpx solid #e5e5e5;
+      text-align: center;
+      &:last-child {
+        border-right: none;
+      }
+      .data-icon {
+        display: inline-block;
+        width: 120rpx;
+        height: 120rpx;
+        line-height: 120rpx;
+        border-radius: 50%;
         text-align: center;
-        &:last-child{
-            border-right: none;
+        vertical-align: middle;
+        .iconfont {
+          font-size: 64rpx;
+          color: #fff;
         }
-        .data-icon{
-            display: inline-block;
-            width: 120rpx;
-            height: 120rpx;
-            line-height: 120rpx;
-            border-radius: 50%;
-            text-align: center;
-            vertical-align: middle;
-            .iconfont{
-                font-size: 64rpx;
-                color:#fff;
-            }
+      }
+      .data-icon.green .iconfont {
+        font-size: 96rpx;
+      }
+      .data-sum {
+        margin-top: 30rpx;
+        .sum {
+          font-size: 40rpx;
         }
-        .data-icon.green .iconfont{
-            font-size: 96rpx;
-        }
-        .data-sum{
-            margin-top: 30rpx;
-            .sum{
-                font-size: 40rpx;
-            }
-        }
-        .data-note{
-            font-size: 28rpx;
-            color:#999;
-        }
+      }
+      .data-note {
+        font-size: 28rpx;
+        color: #999;
+      }
     }
-}
+  }
 </style>

@@ -1,17 +1,15 @@
 // 首页
 import base from './base'
 import { patientApi } from '@/config'
-import evaluate from './evaluate'
 import store from '@/store/utils'
 
 export default class home extends base {
   static async info() {
-    return Promise.all([this.bannerList(), evaluate.list().next()]).then(
-      ([bannerList, evaluateList]) => {
+    return Promise.all([this.bannerList()]).then(
+      ([bannerList]) => {
         store.save('home', {
           bannerList
         })
-        store.save('evaluate', evaluateList)
         return true
       }
     )

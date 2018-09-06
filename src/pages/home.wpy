@@ -3,7 +3,6 @@
   import store from '@/store/utils'
   import authService from '@/api/auth'
   import homeService from '@/api/home'
-  import consultService from '@/api/consult'
   import userService from '@/api/user'
   import base from '@/mixins/base'
   import tabBar from '@/components/common/tabBar'
@@ -46,14 +45,10 @@
         })
         this.$apply()
       }
-      // 登录检查
-      await authService.login()
       // 初始化状态
       await store.init()
       // 获取 banner
-      // 获取 患者评价
       await homeService.info()
-      consultService.list()
       userService.info()
     }
     methods = {
