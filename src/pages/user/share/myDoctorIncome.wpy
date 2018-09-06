@@ -13,7 +13,8 @@
     data = {
       doctorIncomeList: {},
       isLoading: false,
-      scrollHeight: 0
+      scrollHeight: 0,
+      isCurrentMonth: false
     }
     computed = {
       list() {

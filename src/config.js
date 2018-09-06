@@ -27,13 +27,6 @@ export const patientApi = {
     share: {
       qrcode: '/api/share/qrcode', // 个人信息 推荐给朋友二维码
       users: '/api/share/users' // 个人信息 推荐给朋友我发展的用户
-    },
-    cash: {
-      request: '/api/cash/request', // 个人信息 提现请求
-      myCards: '/api/cash/myCards', // 个人信息 获取我添加的银行卡
-      allCards: '/api/cash/allCards', // 个人信息 全部的银行卡
-      addCard: '/api/cash/addCard', // 个人信息 添加银行卡
-      history: '/api/cash/history' // 个人信息 提现历史
     }
   }
 }
