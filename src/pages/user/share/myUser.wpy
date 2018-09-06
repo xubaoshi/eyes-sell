@@ -1,27 +1,64 @@
 <script>
   import wepy from 'wepy'
   import userService from '@/api/user'
+  import zanLoadmore from '@/components/zanui/zan-loadmore'
+  import lang from '@/utils/lang'
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '我发展的用户'
+      navigationBarTitleText: '发展用户'
+    }
+    components = {
+      zanLoadmore
     }
     data = {
-      users: []
+      userIncomeList: {},
+      isLoading: false,
+      scrollHeight: 0
+    }
+    computed = {
+      list() {
+        if (lang.isEmpty(this.userIncomeList.list)) {
+          return []
+        } else {
+          return this.userIncomeList.list
+        }
+      }
     }
     async onLoad() {
-      const arr = await userService.users()
-      this.users = arr
+      wepy.getSystemInfo().then(res => {
+        this.scrollHeight = res.windowHeight + 160
+        this.$apply()
+      })
+      this.userIncomeList = await userService.userIncomeList().next()
       this.$apply()
+    }
+    methods = {
+      async bindDownLoad() {
+        let arr = []
+        if (lang.isEmpty(this.userIncomeList) || parseInt(this.userIncomeList.pages) === parseInt(this.userIncomeList.pageNo)) {
+          return
+        }
+        if (this.isLoading) {
+          return
+        }
+        this.isLoading = true
+        this.$apply()
+        arr = await userService.userIncomeList().next()
+        arr.list = this.userIncomeList.list.concat(arr.list)
+        this.userIncomeList = arr
+        this.isLoading = false
+        this.$apply()
+      }
     }
   }
 </script>
 
 <template>
-  <view>
+  <scroll-view @scrolltolower="bindDownLoad" scroll-y style="height:{{scrollHeight}}px;">
     <!-- S 收入明细 -->
     <view class='user-lst user-dev-lst'>
-      <repeat for='{{users}}'>
-         <!-- 循环user-item -->
+      <repeat for='{{list}}'>
+        <!-- 循环user-item -->
         <view class='user-item'>
           <image class='avatar' mode='aspectFill' src='{{item.avatar}}'></image>
           <view class='user-hd'>
@@ -32,8 +69,8 @@
         <!-- / user-item -->
       </repeat>
     </view>
-    <!-- E 收入明细 -->
-  </view>
+    <zanLoadmore :loading.sync="isLoading"> </zanLoadmore>
+  </scroll-view>
 </template>
 
 <style lang="less" scoped>

@@ -81,13 +81,13 @@ export default class user extends base {
   // 发展医生
   static doctorList() {
     const url = `${this.baseUrl}${patientApi.user.myDoctor}`
-    return new Page(url)
+    return new Page(url, this.processData.bind(this))
   }
 
   // 发展用户收入
   static userIncomeList() {
     const url = `${this.baseUrl}${patientApi.user.myUserIncome}`
-    return new Page(url)
+    return new Page(url, this.processData.bind(this))
   }
 
   // 发展医生收入
