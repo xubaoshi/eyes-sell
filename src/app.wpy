@@ -27,12 +27,12 @@
     }
     config = {
       pages: [
+        'pages/user/income',
         'pages/index',
         'pages/home',
         // ================================
         // user
         'pages/user/password',
-        'pages/user/income',
         // 'pages/user/share/index',
         'pages/user/share/myUser',
         'pages/user/share/myUserIncome',
