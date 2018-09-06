@@ -26,7 +26,7 @@
       </view>
     </view>
     <!-- </repeat> -->
-    <!-- <zanLoadmore :loading.sync="isLoading"> </zanLoadmore> -->
+    <!--<zanLoadmore :loading.sync="isLoading"> </zanLoadmore>-->
   </view>
   <!-- E 医生列表 -->
 </template>

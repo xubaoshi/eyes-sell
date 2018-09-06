@@ -25,7 +25,7 @@
       </repeat>
     </view>
     <!-- E 收入明细 -->
-     <!-- <zanLoadmore :loading.sync="isLoading"> </zanLoadmore> -->
+     <!--<zanLoadmore :loading.sync="isLoading"> </zanLoadmore>-->
   </scroll-view>
 </template>
 
