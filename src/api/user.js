@@ -72,6 +72,30 @@ export default class user extends base {
     return await this.post(url, param)
   }
 
+  // 发展用户
+  static userList() {
+    const url = `${this.baseUrl}${patientApi.user.myUser}`
+    return new Page(url)
+  }
+
+  // 发展医生
+  static doctorList() {
+    const url = `${this.baseUrl}${patientApi.user.myDoctor}`
+    return new Page(url)
+  }
+
+  // 发展用户收入
+  static userIncomeList() {
+    const url = `${this.baseUrl}${patientApi.user.myUserIncome}`
+    return new Page(url)
+  }
+
+  // 发展医生收入
+  static doctorIncomeList() {
+    const url = `${this.baseUrl}${patientApi.user.myDoctorIncome}`
+    return new Page(url)
+  }
+
   // 处理数据
   static processData(item) {
     item['dateFormat'] = lang.dateFormat(item.date, 'yyyy-MM-dd')

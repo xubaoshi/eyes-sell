@@ -11,7 +11,7 @@
    <!-- S 医生列表 -->
   <view class='doc-lst'>
     <!-- 循环 doc-item即可  -->
-    <repeat for='{{list}}'> 
+    <!-- <repeat for='{{list}}'>  -->
     <view class='doc-item' @tap='handleGoDetail({{item}})'>
       <image class='doc-avatar' mode='aspectFill' src='{{item.avatar}}'></image>
       <view class='doc-profile'>

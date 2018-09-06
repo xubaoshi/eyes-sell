@@ -1,7 +1,6 @@
 <script>
   import wepy from 'wepy'
   import store from '@/store/utils'
-  import authService from '@/api/auth'
   import homeService from '@/api/home'
   import userService from '@/api/user'
   import base from '@/mixins/base'

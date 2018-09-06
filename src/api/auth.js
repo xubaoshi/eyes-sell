@@ -106,6 +106,14 @@ export default class auth extends base {
   }
 
    /**
+   * 获取验证码
+   */
+  static async vcode(param) {
+    const url = `${this.baseUrl}${patientApi.forget.vcode}`
+    return await this.get(url, param)
+  }
+
+   /**
    * 更新密码
    */
   static async updatePassword(param) {

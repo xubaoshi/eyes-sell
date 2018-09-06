@@ -87,4 +87,10 @@ export default class Lang {
     }
     return fmt
   }
+
+  // 判断是否是手机号
+  static isPhoneNumber(tel) {
+    var reg = /^0?1[3|4|5|6|7|8][0-9]\d{8}$/
+    return reg.test(tel)
+  }
 }

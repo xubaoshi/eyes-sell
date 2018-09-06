@@ -13,13 +13,19 @@
     components = {
       customSwiper
     }
-    data = {}
     computed = {
       bannerUrls() {
         if (lang.isEmpty(this.home) || lang.isEmpty(this.home.bannerList)) {
           return []
         } else {
           return this.home.bannerList
+        }
+      },
+      collectInfo() {
+        if (lang.isEmpty(this.home) || lang.isEmpty(this.home.collectInfo)) {
+          return {}
+        } else {
+          return this.home.collectInfo
         }
       },
       title() {
@@ -31,6 +37,36 @@
       }
     }
     methods = {
+      handleGoUserIncomeMon() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myUserIncome?type=month'
+        })
+      },
+      handleGoDoctorIncomeMon() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myDoctorIncome?type=month'
+        })
+      },
+      handleGoUserIncome() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myUserIncome'
+        })
+      },
+      handleGoDoctorIncome() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myDoctorIncome'
+        })
+      },
+      handleGoDoctor() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myDoctor'
+        })
+      },
+      handleGoUser() {
+        wepy.navigateTo({
+          url: '/pages/user/share/myUser'
+        })
+      }
     }
   }
 </script>
@@ -40,22 +76,22 @@
     <customSwiper :bannerUrls.sync='bannerUrls' />
     <!-- S 数据展示 -->
     <view class='data-wrap'>
-      <view class='data-item'>
+      <view class='data-item' @tap='handleGoDoctor'>
         <view class='data-icon green'>
           <text class='iconfont  icon-yishengmenzhen'></text>
         </view>
         <view class='data-sum'>
-          <text class='sum'>1878</text>人
+          <text class='sum'>{{collectInfo.doctorNum}}</text>人
         </view>
         <text class='data-note'>医生人数</text>
       </view>
       <!-- /data-item -->
-      <view class='data-item'>
+      <view class='data-item' @tap='handleGoUser'>
         <view class='data-icon orange'>
           <text class='iconfont  icon-wode-active'></text>
         </view>
         <view class='data-sum'>
-          <text class='sum'>1878</text>人
+          <text class='sum'>{{collectInfo.userNum}}</text>人
         </view>
         <text class='data-note'>用户人数</text>
       </view>
@@ -65,7 +101,7 @@
           <text class='iconfont  icon-shouru'></text>
         </view>
         <view class='data-sum'>
-          ￥<text class='sum'>9865</text>
+          ￥<text class='sum'>{{collectInfo.income}}</text>
         </view>
         <text class='data-note'>总收入</text>
       </view>
@@ -75,24 +111,24 @@
     <!-- S 表单列表 -->
     <view class='ui-form-tit'>总收入</view>
     <view class='ui-form'>
-      <view class='field' @tap='handleGoIncome'>
+      <view class='field' @tap='handleGoDoctorIncome'>
         <view class='field-icon green'>
           <text class='iconfont  icon-renminbi'></text>
         </view>
         <text class='field-tit'>发展医生收入</text>
         <view class='field-tail'>
-          ￥<text class='sum'>300</text>
+          ￥<text class='sum'>{{collectInfo.doctorIncome}}</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
       <!-- /field -->
-      <view class='field' @tap='handleGoIncome'>
+      <view class='field' @tap='handleGoUserIncome'>
         <view class='field-icon orange'>
           <text class='iconfont  icon-shouru'></text>
         </view>
         <text class='field-tit'>发展用户收入</text>
         <view class='field-tail'>
-          ￥<text class='sum'>600</text>
+          ￥<text class='sum'>{{collectInfo.userIncome}}</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
@@ -102,24 +138,24 @@
     <!-- S 表单列表 -->
     <view class='ui-form-tit'>本月收入</view>
     <view class='ui-form'>
-      <view class='field' @tap='handleGoIncome'>
+      <view class='field' @tap='handleGoDoctorIncomeMon'>
         <view class='field-icon green'>
           <text class='iconfont  icon-renminbi'></text>
         </view>
         <text class='field-tit'>发展医生收入</text>
         <view class='field-tail'>
-          ￥<text class='sum'>300</text>
+          ￥<text class='sum'>{{collectInfo.doctorIncomeMon}}</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
       <!-- /field -->
-      <view class='field' @tap='handleGoIncome'>
+      <view class='field' @tap='handleGoUserIncomeMon'>
         <view class='field-icon orange'>
           <text class='iconfont  icon-shouru'></text>
         </view>
         <text class='field-tit'>发展用户收入</text>
         <view class='field-tail'>
-          ￥<text class='sum'>600</text>
+          ￥<text class='sum'>{{collectInfo.userIncomeMon}}</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
