@@ -114,7 +114,7 @@
       </view>
       <!-- /field -->
       <view class='field' @tap='handleGoIncome'>
-        <view class='field-icon yellow'>
+        <view class='field-icon orange'>
           <text class='iconfont  icon-shouru'></text>
         </view>
         <text class='field-tit'>发展用户收入</text>
@@ -141,7 +141,7 @@
       </view>
       <!-- /field -->
       <view class='field' @tap='handleGoIncome'>
-        <view class='field-icon yellow'>
+        <view class='field-icon orange'>
           <text class='iconfont  icon-shouru'></text>
         </view>
         <text class='field-tit'>发展用户收入</text>
