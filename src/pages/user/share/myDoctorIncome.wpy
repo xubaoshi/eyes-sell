@@ -1,18 +1,65 @@
 <script>
   import wepy from 'wepy'
+  import userService from '@/api/user'
+  import zanLoadmore from '@/components/zanui/zan-loadmore'
+  import lang from '@/utils/lang'
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '发展医生收入'
+    }
+    components = {
+      zanLoadmore
+    }
+    data = {
+      doctorIncomeList: {},
+      isLoading: false,
+      scrollHeight: 0
+    }
+    computed = {
+      list() {
+        if (lang.isEmpty(this.doctorIncomeList.list)) {
+          return []
+        } else {
+          return this.doctorIncomeList.list
+        }
+      }
+    }
+    async onLoad() {
+      wepy.getSystemInfo().then(res => {
+        this.scrollHeight = res.windowHeight + 160
+        this.$apply()
+      })
+      this.doctorIncomeList = await userService.doctorIncomeList().next()
+      this.$apply()
+    }
+    methods = {
+      async bindDownLoad() {
+        let arr = []
+        if (lang.isEmpty(this.doctorIncomeList) || parseInt(this.doctorIncomeList.pages) === parseInt(this.doctorIncomeList.pageNo)) {
+          return
+        }
+        if (this.isLoading) {
+          return
+        }
+        this.isLoading = true
+        this.$apply()
+        arr = await userService.doctorIncomeList().next()
+        arr.list = this.doctorIncomeList.list.concat(arr.list)
+        this.doctorIncomeList = arr
+        this.isLoading = false
+        this.$apply()
+      }
     }
   }
 </script>
 
 <template>
-   <!-- S 医生列表 -->
-  <view class='doc-lst'>
-    <!-- 循环 doc-item即可  -->
-    <!-- <repeat for='{{list}}'>  -->
-    <view class='doc-item' @tap='handleGoDetail({{item}})'>
+  <scroll-view @scrolltolower="bindDownLoad" scroll-y style="height:{{scrollHeight}}px;">
+    <!-- S 收入明细 -->
+    <view class='doc-lst'>
+      <repeat for='{{list}}'>
+        <!-- 循环user-item -->
+        <view class='doc-item' @tap='handleGoDetail({{item}})'>
       <image class='doc-avatar' mode='aspectFill' src='{{item.avatar}}'></image>
       <view class='doc-profile'>
         <view class='doc-name'>{{item.name}}</view>
@@ -21,16 +68,17 @@
           <text class='txt'>擅长：{{item.expert}}</text>
         </view>
         <view class='doc-cost'>
-          <text class='txt price'>{{item.price}}元</text>
+          <text class='txt price'>{{item.money}}元</text>
         </view>
       </view>
     </view>
-    <!-- </repeat> -->
-    <!--<zanLoadmore :loading.sync="isLoading"> </zanLoadmore>-->
-  </view>
-  <!-- E 医生列表 -->
+        <!-- / user-item -->
+      </repeat>
+    </view>
+    <zanLoadmore :loading.sync="isLoading"> </zanLoadmore>
+  </scroll-view>
 </template>
 
 <style lang="less" scoped>
-  @import url('../../../styles/components/c_doc_lst.less');
+   @import url('../../../styles/components/c_doc_lst.less');
 </style>
