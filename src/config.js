@@ -1,4 +1,4 @@
-export const baseUrl = 'https://www.easy-mock.com/mock/5b719f05ebd4a208cce29bb8'
+export const baseUrl = 'https://www.easy-mock.com/mock/5b88de3147255d4d3b51efb9'
 
 // 患者接口
 export const patientApi = {
