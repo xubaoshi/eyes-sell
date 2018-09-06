@@ -63,9 +63,8 @@
           <image class='avatar' mode='aspectFill' src='{{item.avatar}}'></image>
           <view class='user-hd'>
             {{item.name}}
-            <!-- to宝石：修改这里 -->
-            <text class='status'>未借款</text>
-            <text class='income'>$200.00</text>
+            <text class='status'>{{item.status}}</text>
+            <text class='income'>{{item.money}}元</text>
           </view>
         </view>
         <!-- / user-item -->
