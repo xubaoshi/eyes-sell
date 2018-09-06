@@ -111,7 +111,7 @@ eslint（插件）
         forget.wpy              //找回密码
         index.wpy               //登录
       --user
-        --info.wpy              //个人信息
+        --password.wpy          //修改密码
         --income.wpy            //收入明细
       --share
           --index.wpy           //推荐给朋友

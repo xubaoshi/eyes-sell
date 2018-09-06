@@ -105,6 +105,14 @@ export default class auth extends base {
     return data.result
   }
 
+   /**
+   * 更新密码
+   */
+  static async updatePassword(param) {
+    const url = `${this.baseUrl}${patientApi.forget.updatePassword}`
+    return await this.post(url, param)
+  }
+
   /**
    * 设置权限值
    */

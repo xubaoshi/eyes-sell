@@ -31,7 +31,7 @@
         'pages/index',
         // ================================
         // user
-        'pages/user/info',
+        'pages/user/password',
         'pages/user/income',
         // 'pages/user/share/index',
         'pages/user/share/myUser',

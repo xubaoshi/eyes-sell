@@ -14,6 +14,10 @@ export const patientApi = {
     checkSession: '/api/auth/check_session', // 校验 session 是否生效
     decodeUserinfo: '/api/auth/decode_userinfo' // wepy.getUserInfo() 返回值的解码
   },
+  forget: {
+    updatePassword: '/api/auth/updatePassword',  // 更新密码
+    vcode: '/api/auth/vcode'  // 验证码
+  },
   upload: {
     image: '/api/upload/image', // 图片上传
     vedio: '/api/upload/vedio' // 视频上传
