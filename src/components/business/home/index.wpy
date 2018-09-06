@@ -100,13 +100,53 @@
     </view>
     <!-- E 数据展示 -->
     <!-- S 表单列表 -->
+    <view class='ui-form-tit'>总收入</view>
     <view class='ui-form'>
       <view class='field' @tap='handleGoIncome'>
         <view class='field-icon green'>
-          <text class='iconfont  icon-Group-'></text>
+          <text class='iconfont  icon-renminbi'></text>
         </view>
-        <text class='field-tit'>密码修改</text>
+        <text class='field-tit'>发展医生收入</text>
         <view class='field-tail'>
+          ￥<text class='sum'>300</text>
+          <text class='iconfont  icon-zhankai arrow'></text>
+        </view>
+      </view>
+      <!-- /field -->
+      <view class='field' @tap='handleGoIncome'>
+        <view class='field-icon yellow'>
+          <text class='iconfont  icon-shouru'></text>
+        </view>
+        <text class='field-tit'>发展用户收入</text>
+        <view class='field-tail'>
+          ￥<text class='sum'>600</text>
+          <text class='iconfont  icon-zhankai arrow'></text>
+        </view>
+      </view>
+      <!-- /field -->
+    </view>
+    <!-- E 表单 -->
+    <!-- S 表单列表 -->
+    <view class='ui-form-tit'>本月收入</view>
+    <view class='ui-form'>
+      <view class='field' @tap='handleGoIncome'>
+        <view class='field-icon green'>
+          <text class='iconfont  icon-renminbi'></text>
+        </view>
+        <text class='field-tit'>发展医生收入</text>
+        <view class='field-tail'>
+          ￥<text class='sum'>300</text>
+          <text class='iconfont  icon-zhankai arrow'></text>
+        </view>
+      </view>
+      <!-- /field -->
+      <view class='field' @tap='handleGoIncome'>
+        <view class='field-icon yellow'>
+          <text class='iconfont  icon-shouru'></text>
+        </view>
+        <text class='field-tit'>发展用户收入</text>
+        <view class='field-tail'>
+          ￥<text class='sum'>600</text>
           <text class='iconfont  icon-zhankai arrow'></text>
         </view>
       </view>
@@ -118,5 +158,49 @@
 
 <style lang='less' scoped>
   @import url('../../../styles/ui/ui_form.less');
- 
+
+  .data-wrap{
+    display: flex;
+    justify-content: space-around;
+    padding: 45rpx 0;
+    margin: 30rpx 0;
+
+    background-color: #fff;
+    border-top: 1rpx solid #e5e5e5;
+    border-bottom: 1rpx solid #e5e5e5;
+    .data-item{
+        width: 33%;
+        border-right: 1rpx solid #e5e5e5;
+        text-align: center;
+        &:last-child{
+            border-right: none;
+        }
+        .data-icon{
+            display: inline-block;
+            width: 120rpx;
+            height: 120rpx;
+            line-height: 120rpx;
+            border-radius: 50%;
+            text-align: center;
+            vertical-align: middle;
+            .iconfont{
+                font-size: 64rpx;
+                color:#fff;
+            }
+        }
+        .data-icon.green .iconfont{
+            font-size: 96rpx;
+        }
+        .data-sum{
+            margin-top: 30rpx;
+            .sum{
+                font-size: 40rpx;
+            }
+        }
+        .data-note{
+            font-size: 28rpx;
+            color:#999;
+        }
+    }
+}
 </style>
