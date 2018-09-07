@@ -11,16 +11,16 @@
       zanLoadmore
     }
     data = {
-      userIncomeList: {},
+      userList: {},
       isLoading: false,
       scrollHeight: 0
     }
     computed = {
       list() {
-        if (lang.isEmpty(this.userIncomeList.list)) {
+        if (lang.isEmpty(this.userList.list)) {
           return []
         } else {
-          return this.userIncomeList.list
+          return this.userList.list
         }
       }
     }
@@ -29,13 +29,13 @@
         this.scrollHeight = res.windowHeight + 160
         this.$apply()
       })
-      this.userIncomeList = await userService.userIncomeList().next()
+      this.userList = await userService.userList().next()
       this.$apply()
     }
     methods = {
       async bindDownLoad() {
         let arr = []
-        if (lang.isEmpty(this.userIncomeList) || parseInt(this.userIncomeList.pages) === parseInt(this.userIncomeList.pageNo)) {
+        if (lang.isEmpty(this.userList) || parseInt(this.userList.pages) === parseInt(this.userList.pageNo)) {
           return
         }
         if (this.isLoading) {
@@ -43,9 +43,9 @@
         }
         this.isLoading = true
         this.$apply()
-        arr = await userService.userIncomeList().next()
-        arr.list = this.userIncomeList.list.concat(arr.list)
-        this.userIncomeList = arr
+        arr = await userService.userList().next()
+        arr.list = this.userList.list.concat(arr.list)
+        this.userList = arr
         this.isLoading = false
         this.$apply()
       }
