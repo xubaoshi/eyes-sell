@@ -76,10 +76,10 @@
       })
     }
     createAuthHeader() {
-      const loginCode = wepy.$instance.globalData.auth.login_code
+      const loginCode = wepy.$instance.globalData.auth.loginCode
       const header = {}
       if (loginCode) {
-        header['login_code'] = loginCode
+        header['loginCode'] = loginCode
       }
       return header
     }
@@ -95,8 +95,8 @@
       }
       Object.assign(wepy.$instance.globalData, ext)
       // 同步权限数据
-      this.syncStoreConfig('login_code')
-      this.syncStoreConfig('third_session')
+      this.syncStoreConfig('loginCode')
+      this.syncStoreConfig('thirdSession')
       this.syncStoreConfig('user')
       // 获取保存场景值
       if (param && param.scene) {

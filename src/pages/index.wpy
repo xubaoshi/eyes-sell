@@ -5,8 +5,27 @@
     config = {
       navigationBarTitleText: '爱眼康'
     }
+    data = {
+      canIUse: wepy.canIUse('button.open-type.getUserInfo')
+    }
     async onLoad() {
-      const loginCode = wepy.getStorageSync('login_code')
+      wepy.getSetting().then(res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          this.goHome()
+        }
+      })
+    }
+    methods = {
+      handleGetUserInfo(e) {
+        if (e.detail.userInfo) {
+          this.goHome()
+        }
+      }
+    }
+    async goHome() {
+      authService.user()
+      const loginCode = wepy.getStorageSync('loginCode')
       if (loginCode != null && loginCode !== '') {
         try {
           await authService.checkLoginCode(loginCode)
@@ -25,36 +44,23 @@
         })
       }
     }
-    getConfig(key) {
-      return wepy.$instance.globalData.auth[key]
-    }
-    methods = {
-      handleGoLogin() {
-        wepy.navigateTo({
-          url: '/pages/login/index'
-        })
-      },
-      handleGoRegister() {
-        wepy.navigateTo({
-          url: '/pages/register/index'
-        })
-      }
-    }
   }
 </script>
 
 <template>
-  <view>
+  <view class='avtar'>
+    <image class='logo' mode='aspectFit' src='/images/aiyan.png'></image>
   </view>
+  <view class='sub-tit'>需要您的授权才能使用哦！</view>
+  <button class="weui-btn" type="primary" open-type="getUserInfo" bindgetuserinfo='handleGetUserInfo'>立即授权</button>
 </template>
 
 <style lang="less" scoped>
   .avtar {
     margin-top: 100rpx;
     text-align: center;
-    text {
-      font-size: 250rpx;
-      color: #15C4A6;
+    .logo {
+      width: 200rpx;
     }
   }
   .tit {

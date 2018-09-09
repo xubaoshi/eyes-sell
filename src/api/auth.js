@@ -12,7 +12,7 @@ export default class auth extends base {
    * 一键登录
    */
   static async login() {
-    const loginCode = this.getConfig('login_code')
+    const loginCode = this.getConfig('loginCode')
     if (loginCode != null && loginCode != '') {
       try {
         await this.checkLoginCode(loginCode)
@@ -32,32 +32,23 @@ export default class auth extends base {
   static async user(param = { block: false, redirect: false }, userInfo) {
     try {
       // 检查
-      if (this.hasConfig('user')) {
-        store.save('user', this.getConfig('user'))
+      if (this.hasConfig('userInfo')) {
+        store.save('userInfo', this.getConfig('userInfo'))
         return true
       }
-      console.info('[auth] user check fail')
+      console.info('[auth] userInfo check fail')
       // 重新登录
-      await this.doLogin()
+      // await this.doLogin()
       // 获取用户信息
-      const rawUser = userInfo != null ? userInfo : await wepy.getUserInfo()
+      const { userInfo } = await wepy.getUserInfo()
       // 解密信息
-      const { user } = await this.decodeUserInfo(rawUser)
+      // const { user } = await this.decodeUserInfo(rawUser)
       // 保存登录信息
-      await this.setConfig('user', user)
-      store.save('user', user)
+      await this.setConfig('userInfo', userInfo)
+      store.save('userInfo', userInfo)
       return true
     } catch (error) {
       console.error('[auth] 授权失败', error)
-      if (param.block) {
-        const url = `/pages/home/login?redirect=${param.redirect}`
-        if (param.redirect) {
-          WxUtils.backOrRedirect(url)
-        } else {
-          WxUtils.backOrNavigate(url)
-        }
-      }
-      return false
     }
   }
 
@@ -69,7 +60,7 @@ export default class auth extends base {
     const param = {
       encryptedData: rawUser.encryptedData,
       iv: rawUser.iv,
-      thirdSession: this.getConfig('third_session'),
+      thirdSession: this.getConfig('thirdSession'),
       app_code: this.getShopCode()
     }
     return await this.get(url, param)
@@ -80,9 +71,9 @@ export default class auth extends base {
    */
   static async doLogin() {
     const { code } = await wepy.login()
-    const { third_session, login_code } = await this.session(code)
-    await this.setConfig('login_code', login_code)
-    await this.setConfig('third_session', third_session)
+    const { thirdSession, loginCode } = await this.session(code)
+    await this.setConfig('thirdSession', thirdSession)
+    await this.setConfig('loginCode', loginCode)
     await this.login()
   }
 
@@ -100,12 +91,12 @@ export default class auth extends base {
   static async checkLoginCode(loginCode) {
     const url = `${this.baseUrl}${
       patientApi.auth.checkSession
-    }?login_code=${loginCode}`
+    }?loginCode=${loginCode}`
     const data = await this.get(url)
     return data.result
   }
 
-   /**
+  /**
    * 获取验证码
    */
   static async vcode(param) {
@@ -113,7 +104,7 @@ export default class auth extends base {
     return await this.get(url, param)
   }
 
-   /**
+  /**
    * 更新密码
    */
   static async updatePassword(param) {
