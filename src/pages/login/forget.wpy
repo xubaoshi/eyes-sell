@@ -62,6 +62,7 @@
           return
         }
         await authService.updatePassword({
+          type: 2,
           phone: e.detail.value.phone,
           code: e.detail.value.code,
           password: e.detail.value.passwordOne
