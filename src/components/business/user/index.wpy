@@ -9,6 +9,15 @@
     userInfo: store.get('userInfo')
   })
   export default class UserIndex extends wepy.component {
+    computed = {
+      userIn() {
+        if (this.userInfo) {
+          return this.userInfo
+        } else {
+          return wepy.getStorageSync('userInfo')
+        }
+      }
+    }
     methods = {
       handleGoInfo() {
         wepy.navigateTo({
@@ -34,8 +43,8 @@
     <!-- S 个人信息 -->
     <view class='user-panel'>
       <view class='user-panel'>
-        <image class='avatar' mode='aspectFill' src='{{userInfo.avatarUrl}}'></image>
-        <view class='user-name'>{{userInfo.nickName}}</view>
+        <image class='avatar' mode='aspectFill' src='{{userIn.avatarUrl}}'></image>
+        <view class='user-name'>{{userIn.nickName}}</view>
         <view class='user-intro'>
           <text class='txt'>{{user.address}}</text>
           <text class='txt'>推广码：{{user.shareCode}}</text>
